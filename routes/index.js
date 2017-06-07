@@ -7,23 +7,21 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/Suma', function(req,res,next){
-  res.render('Suma',{"txtNum1":"","msg":""});
+  res.render('Suma',{"txtNum1":"","txtNum2":""});
 
 });
 
-var usersRegistered = [];
+var resp = [];
 
 router.post('/Suma',function(req,res,next){
   console.log(req.body);
-    usersRegistered.push(req.body.txtNum1);
-    usersRegistered.push(req.body.txtNum2);
-    // Para que conozcan map funcion de un arreglo
-    //var msgs = usersRegistered.map(function(item,i){return item}).join("|");
-    //var msgs = usersRegistered.join("|");
-    var msgs = usersRegistered;
-    var rtObject = {}; // {"txtEmail": req.body.txtEmail, "msg":msgs};
+  resp.push(parseInt(req.body.txtNum1)+parseInt(req.body.txtNum2));
+  var msgs = resp;
+  var rtObject = {};
+
     rtObject.txtNum1 = req.body.txtNum1;
-    rtObject.msg= msgs;
+    rtObject.txtNum2 = req.body.txtNum2;
+    rtObject.msg=msgs;
   res.render('Suma', rtObject);
 });
 
